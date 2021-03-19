@@ -29,7 +29,7 @@ export default function MainLayout({ children }) {
         </div>
 
         {/* Hero Section */}
-        <div className="bg-yellow-100 h-screen pt-36 relative">
+        <div className="bg-gray-100 h-screen pt-36 relative">
           <SpecialTitle position={{
             top: "40px",
             right: "-40px",
@@ -44,7 +44,7 @@ export default function MainLayout({ children }) {
 
             <div className="flex mt-16">
               <div className="flex-1 space-y-16">
-                <h1 className="text-6xl font-bold uppercase">Here's my <br /> personal space</h1>
+                <h1 className="text-6xl font-bold uppercase transform scale-150 translate-x-1/4" style={{color: "#255b98"}}>Here's my <br /> personal space</h1>
                 <div className="flex items-center space-x-6">
                   <img className="w-10" src="/images/drink.png" alt="an image of a drink for you" />
                   <p className="font-medium text-lg">

@@ -1,4 +1,4 @@
-export default function SpecialTitle({ children, position }) {
+export default function SpecialTitle({ children, position, variant }) {
   return (
     <h1
       style={{
@@ -7,7 +7,7 @@ export default function SpecialTitle({ children, position }) {
         lineHeight: "200px",
         ...position
       }}
-      className="absolute font-bold opacity-5"
+      className={`absolute font-bold ${variant === 'dark' ? 'text-black opacity-30' : 'opacity-5 '}`}
     >
       { children}
     </h1>

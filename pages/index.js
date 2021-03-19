@@ -7,6 +7,8 @@ import Card from "components/card";
 import ListItem from "components/listitem";
 import ItemProficiency from "components/itemproficiency";
 import Button from "components/button";
+import ExhibitGrid from "components/exhibitgrid";
+import Quote from "components/quote";
 
 export default function Home() {
   return (
@@ -21,7 +23,7 @@ export default function Home() {
           <p className="my-14 text-center mx-auto" style={{ maxWidth: "640px" }}>
             Single threaded, high performance.<br />
             Very focused and motivated, with high attention to details. Not being able to efficiently multitask is my weakness and it only goes to prove that I'm only human afterall.
-            I like to work on cool projects that brings out every ounce of best in me.<br/>
+            I like to work on cool projects that brings out every ounce of best in me.<br />
             The discovery is my "reward".
           </p>
           <SmallTitle addLine={true}>
@@ -72,19 +74,23 @@ export default function Home() {
       </section>
 
       {/* exhibit section */}
-      <section className="min-h-screen relative pt-56 pb-32 bg-gray-900 text-gray-800">
-
-
+      <section className="min-h-screen relative pt-32 pb-32 bg-gray-900 text-gray-800">
         <SpecialTitle position={{
           bottom: "40px",
           right: "-100px"
-        }}>
+        }} variant='dark'>
           Exhibition
         </SpecialTitle>
         <Container>
+          <Quote className="mb-16" variant="light" author="Eduardo Galeano">I am not particularly interested in saving time; I prefer to enjoy it.</Quote>
           <SectionTitle addLine={true} lineDirection="left">
             Exhibits
           </SectionTitle>
+
+          <ExhibitGrid />
+          <div className="flex justify-center">
+            <Button variant='light'>Enter Exhibition</Button>
+          </div>
         </Container>
       </section>
 
@@ -99,6 +105,7 @@ export default function Home() {
           Skill Set
         </SpecialTitle>
         <Container>
+          <Quote className="relative -top-44" variant="dark" author="Martin Golding">Always code as if the guy who ends up maintaining your code will be <br/> a violent psychopath who knows where you live.</Quote>
           <SectionTitle addLine={true} lineDirection="left">
             Why me?
           </SectionTitle>
@@ -138,11 +145,11 @@ export default function Home() {
             </ListItem>
             <ListItem className="mr-4 font-medium text-sm items-center">
               <img src="/images/linkedin logo.png" alt="linkedin logo" className="h-8" />
-              <ItemProficiency item="Wordpress" proficiency="70" />
+              <ItemProficiency item="Python" proficiency="70" />
             </ListItem>
             <ListItem className="mr-4 font-medium text-sm items-center">
               <img src="/images/linkedin logo.png" alt="linkedin logo" className="h-8" />
-              <ItemProficiency item="Python" proficiency="70" />
+              <ItemProficiency item="Wordpress" proficiency="70" />
             </ListItem>
           </div>
 
@@ -214,7 +221,7 @@ export default function Home() {
               <span className="inline-block font-bold tracking-wider mx-2">
                 <img className="inline-block mr-2 overflow-hidden rounded-full" src="/images/nigeria.svg" alt="svg flag of ghana" width="20" />
                 <a href="tel:+2348101511645" className="inline-block focus:outline-none focus:underline hover:underline">+2348101511645</a>
-                
+
               </span>
             </span>
           </p>
