@@ -188,8 +188,8 @@ export default function Home() {
               }}
               className="flex flex-wrap items-stretch space-x-4 mx-auto text-sm"
             >
-              <div className="flex-1 border-4 border-gray-500 overflow-hidden rounded">
-                <textarea className="transition-all h-full w-full resize-none p-3 focus:opacity-100 outline-none focus:outline-none opacity-60" name="message" id="message" placeholder="Type your message here..."></textarea>
+              <div className="flex-1">
+                <textarea className="font-semibold transition-all h-full w-full resize-none p-3 border-4 border-gray-500 rounded-md focus:opacity-100 outline-none focus:outline-none opacity-60" name="message" id="message" placeholder="Type your message here..."></textarea>
               </div>
               <div className="flex flex-col items-stretch space-y-4 flex-1">
                 <div className="ct-form-control">
