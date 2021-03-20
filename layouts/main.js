@@ -29,11 +29,11 @@ export default function MainLayout({ children }) {
         </div>
 
         {/* Hero Section */}
-        <div className="bg-gray-100 h-screen pt-36 relative">
+        <div className="bg-gray-100 h-screen pt-36 relative overflow-hidden">
           <SpecialTitle position={{
             top: "40px",
-            right: "-40px",
-          }}>Personal<br />Space</SpecialTitle>
+            right: "80px",
+          }} animationDirection="left">Personal<br />Space</SpecialTitle>
 
           <Container>
             <div className="logo">
@@ -44,9 +44,9 @@ export default function MainLayout({ children }) {
 
             <div className="flex mt-16">
               <div className="flex-1 space-y-16">
-                <h1 className="text-6xl font-bold uppercase transform scale-150 translate-x-1/4" style={{color: "#255b98"}}>Here's my <br /> personal space</h1>
+                <h1 className="text-6xl font-bold uppercase transform scale-150 translate-x-1/4" style={{ color: "#255b98" }}>Here's my <br /> personal space</h1>
                 <div className="flex items-center space-x-6">
-                  <img className="w-10" src="/images/drink.png" alt="an image of a drink for you" />
+                  {/* <img className="w-10" src="/images/drink.png" alt="an image of a drink for you" /> */}
                   <p className="font-medium text-lg">
                     <span className="font-bold text-gray-500">There’s a lot to see.</span> <br />
                   Grab a drink while I show <br />
@@ -58,7 +58,7 @@ export default function MainLayout({ children }) {
                 </Button>
               </div>
               <div className="flex-1" style={{ transform: "rotateY(180deg)" }}>
-                <img className="w-full transform -translate-y-64" src="/images/otf-transparent.png" alt="a photo of frank choongsaeng" />
+                {/* <img className="w-full transform -translate-y-64" src="/images/otf-transparent.png" alt="a photo of frank choongsaeng" /> */}
               </div>
             </div>
           </Container>

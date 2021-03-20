@@ -15,7 +15,7 @@ export default function Home() {
     <MainLayout>
       {/* about me section */}
       <section className="min-h-screen relative pt-56 pb-32" id="about">
-        <SpecialTitle position={{ top: "40px", left: "-80px" }}>
+        <SpecialTitle position={{ top: "40px", left: "80px" }}>
           About Me
         </SpecialTitle>
         <Container>
@@ -74,11 +74,12 @@ export default function Home() {
       </section>
 
       {/* exhibit section */}
-      <section className="min-h-screen relative pt-32 pb-32 bg-gray-900 text-gray-800">
+      <section className="min-h-screen relative pt-32 pb-32 bg-gray-900 text-gray-800 overflow-hidden">
         <SpecialTitle position={{
           bottom: "40px",
-          right: "-100px"
-        }} variant='dark'>
+          right: "80px"
+        }} variant='dark' 
+        animationDirection="left">
           Exhibition
         </SpecialTitle>
         <Container>
@@ -100,7 +101,7 @@ export default function Home() {
 
         <SpecialTitle position={{
           top: "40px",
-          left: "-60px"
+          left: "80px"
         }}>
           Skill Set
         </SpecialTitle>
@@ -110,7 +111,7 @@ export default function Home() {
             Why me?
           </SectionTitle>
           <p className="my-14 text-center mx-auto" style={{ maxWidth: "640px" }}>
-            Single threaded, high performance.<br />
+            Great question!.<br />
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor id in id molestie vitae amet pellentesque. Potenti nulla sapien ullamcorper gravida sed in dolor massa. Et posuere sollicitudin turpis ac lacus. Neque mi commodo arcu risus, leo tortor risus.
           </p>
 
