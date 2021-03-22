@@ -20,7 +20,7 @@ export default function Home() {
           <SpecialTitle
             position={{
               top: "40px",
-              left: "20%"
+              left: "-20%"
             }}
 
           >
