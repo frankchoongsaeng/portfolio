@@ -3,40 +3,30 @@ import Container from "components/container";
 import Button from "components/button";
 import SpecialTitle from "components/specialtitle";
 
-
-function Nav() {
-
-  return (
-    <>
-      <div className="sticky top-0 z-50 bg-white shadow-xl">
-        <Container>
-          <div className="flex items-center justify-center py-2">
-            {/* <h4 className="text-xl font-bold text-gray-400">LOGO</h4> */}
-            <nav className="flex items-center space-x-16 text-sm font-medium">
-              <Link href="#about">
-                <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">About</a>
-              </Link>
-              <span className="inline-block h-4 border-l-2 border-light"></span>
-              <Link href="#contact">
-                <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">Contact Me</a>
-              </Link>
-              <span className="inline-block h-4 border-l-2 border-light"></span>
-              <Button>Enter Exhibition</Button>
-            </nav>
-          </div>
-        </Container>
-      </div>
-    </>
-  )
-}
-
 export default function MainLayout({ children }) {
   return (
     <div className="select-none">
       <div className="bg-white">
 
         {/* nav section */}
-        <Nav />
+        <div className="sticky top-0 z-50 bg-white shadow-xl">
+          <Container>
+            <div className="flex items-center justify-between  py-2">
+              <h4 className="text-xl font-bold text-gray-400">LOGO</h4>
+              <nav className="max-w-max flex items-center space-x-8 text-sm font-medium">
+                <Link href="#about">
+                  <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">About</a>
+                </Link>
+                <span className="inline-block h-4 border-l-2 border-light"></span>
+                <Link href="#contact">
+                  <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">Contact Me</a>
+                </Link>
+                <span className="inline-block h-4 border-l-2 border-light"></span>
+                <Button>Return To Home</Button>
+              </nav>
+            </div>
+          </Container>
+        </div>
 
         {/* Hero Section */}
         <div className="bg-gray-100 h-screen pt-36 relative overflow-hidden">

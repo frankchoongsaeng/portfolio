@@ -35,7 +35,7 @@ export default function SpecialTitle({ children, position, variant, animationDir
     <h1
       style={{
         zIndex: "0",
-        fontSize: "250px",
+        fontSize: "230px",
         lineHeight: "200px",
         ...position
       }}
