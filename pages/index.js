@@ -15,23 +15,25 @@ export default function Home() {
 
     <>
 
-      <div className="flex lg:hidden flex-col w-80 relative mx-auto py-12">
-        <SpecialTitle
-          position={{
-            top: "40px",
-            left: "20%"
-          }}
+      <div className="flex lg:hidden flex-col relative">
+        <div className="w-80 mx-auto relative">
+          <SpecialTitle
+            position={{
+              top: "40px",
+              left: "20%"
+            }}
 
-        >
-          SO<br/>RRY
-        </SpecialTitle>
-        <div className="">
-          <p className="text-sm uppercase text-center font-bold text-gray-300">Stay Informed</p>
-          <p className="text-2xl text-center">be the first  to see what's coming</p>
-          <img className="h-96 w-auto mx-auto" src="/images/site news image.jpg" alt="a man reading news about site" />
+          >
+            SO<br />RRY
+          </SpecialTitle>
         </div>
-        <hr className="mb-8"/>
-        <p className="text-xs text-center w-52 m-auto">This site is not currently available for small devices yet. <br /> Please use a bigger device, preferrably a 15 in. computer</p>
+        <div className="text-center w-80 mx-auto py-12">
+          <p className="text-sm uppercase font-bold text-gray-300">Stay Informed.</p>
+          <p className="text-2xl text-center">Be the first  to see what's coming!</p>
+          <img className="h-96 w-auto mx-auto" src="/images/site news image.jpg" alt="a man reading news about site" />
+          <hr className="mb-8" />
+          <p className="text-xs w-52 m-auto">This site is not currently available for small devices yet. <br /> Please use a bigger device <i>(preferrably a 15 in. computer)</i></p>
+        </div>
       </div>
 
       <div className="hidden lg:block">
