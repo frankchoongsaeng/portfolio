@@ -15,7 +15,7 @@ export default function Home() {
 
     <>
 
-      <div className="flex lg:hidden flex-col relative">
+      <div className="flex lg:hidden flex-col relative overflow-hidden">
         <div className="w-80 mx-auto relative">
           <SpecialTitle
             position={{
