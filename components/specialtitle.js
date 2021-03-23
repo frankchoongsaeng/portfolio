@@ -2,7 +2,8 @@ import { useEffect, useRef, useState, } from "react"
 
 export default function SpecialTitle({ children, position, variant, animationDirection = "right" }) {
 
-  const currEntry = useRef({})
+  const currEntry = useRef({});
+  const observer = useRef(null); 
   const titleRef = useRef(null);
 
   function scrollTitle() {
@@ -17,16 +18,18 @@ export default function SpecialTitle({ children, position, variant, animationDir
   useEffect(() => {
 
     const options = {};
-    new IntersectionObserver(
+    observer.current = new IntersectionObserver(
       (entries, _observer) => {
         currEntry.current = entries[0];
       },
       options
-    ).observe(titleRef.current);
+    );
+    observer.current.observe(titleRef.current);
 
     // add a scroll listener to the window and remove it when the component gets destroyed
     window.addEventListener("scroll", scrollTitle);
     return () => {
+      observer.current.unObserve();
       window.removeEventListener("scroll", scrollTitle);
     }
   }, [])

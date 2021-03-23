@@ -15,7 +15,7 @@ export default function Home() {
 
     <>
 
-      <div className="flex lg:hidden flex-col relative overflow-hidden">
+      <div className="hidden flex-col relative overflow-hidden">
         <div className="w-80 mx-auto relative">
           <SpecialTitle
             position={{
@@ -36,7 +36,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="hidden lg:block">
+      <div className="">
         <MainLayout>
           {/* about me section */}
           <section className="min-h-screen relative pt-56 pb-32" id="about">

@@ -1,34 +1,7 @@
-import Link from "next/link";
 import Container from "components/container";
 import Button from "components/button";
 import SpecialTitle from "components/specialtitle";
-
-
-function Nav() {
-
-  return (
-    <>
-      <div className="sticky top-0 z-50 bg-white shadow-xl">
-        <Container>
-          <div className="flex items-center justify-center py-2">
-            {/* <h4 className="text-xl font-bold text-gray-400">LOGO</h4> */}
-            <nav className="flex items-center space-x-16 text-sm font-medium">
-              <Link href="#about">
-                <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">About</a>
-              </Link>
-              <span className="inline-block h-4 border-l-2 border-light"></span>
-              <Link href="#contact">
-                <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">Contact Me</a>
-              </Link>
-              <span className="inline-block h-4 border-l-2 border-light"></span>
-              <Button>Enter Exhibition</Button>
-            </nav>
-          </div>
-        </Container>
-      </div>
-    </>
-  )
-}
+import Nav from "components/nav";
 
 export default function MainLayout({ children }) {
   return (
