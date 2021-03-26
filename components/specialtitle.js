@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, } from "react"
 export default function SpecialTitle({ children, position, variant, animationDirection = "right" }) {
 
   const currEntry = useRef({});
-  const observer = useRef(null); 
+  const observer = useRef(null);
   const titleRef = useRef(null);
 
   function scrollTitle() {
@@ -29,23 +29,25 @@ export default function SpecialTitle({ children, position, variant, animationDir
     // add a scroll listener to the window and remove it when the component gets destroyed
     window.addEventListener("scroll", scrollTitle);
     return () => {
-      observer.current.unObserve();
       window.removeEventListener("scroll", scrollTitle);
     }
   }, [])
 
   return (
-    <h1
-      style={{
-        zIndex: "0",
-        fontSize: "230px",
-        lineHeight: "200px",
-        ...position
-      }}
-      className={`absolute font-bold ${variant === 'dark' ? 'text-black opacity-30' : 'opacity-5 '}`}
-      ref={titleRef}
-    >
-      { children}
-    </h1>
+    <>
+      {/* for very small screens */}
+      <h1
+        style={{
+          zIndex: "0",
+          // fontSize: "150px",
+          lineHeight: "0.8",
+          ...position
+        }}
+        className={`absolute font-bold text-150 sm:text-180 md:text-210 lg:text-240 whitespace-nowrap overflow-hidden ${variant === 'dark' ? 'text-black opacity-30' : 'opacity-5 '}`}
+        ref={titleRef}
+      >
+        {children}
+      </h1>
+    </>
   )
 }

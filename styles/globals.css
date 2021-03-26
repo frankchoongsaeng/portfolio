@@ -8,7 +8,7 @@
 @tailwind utilities;
 
 * {
-  @apply box-border;
+  /* @apply box-border; */
 }
 
 html,
@@ -17,12 +17,6 @@ body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
-body {
-  width: 100vw;
-  overflow-x: hidden;
-}
-
 
 a {
   color: inherit;
@@ -74,4 +68,16 @@ a {
 
 .btn:active .arrow {
   @apply translate-x-0;
+}
+
+.fixed-nav {
+  transform-style: preserve-3d;
+}
+
+/* .nav-toggle-btn {
+  @apply block h-full w-full m-0 p-2 relative z-10 text-gray-50 border border-none rounded-full shadow-xl transition-transform;
+} */
+
+.nav-toggle-btn.open {
+  transform: rotateY(90deg);
 }

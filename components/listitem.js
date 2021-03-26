@@ -11,7 +11,7 @@ export default function ListItem({ children, link, ...props }) {
         </a>
       )
       : (
-        <div {...props} className={"flex items-center space-x-4 mt-4 p-2 px-3 bg-gray-900 rounded " + props.className}>
+        <div {...props} style={{flexBasis: ""}} className={"flex  items-center space-x-4 mt-4 p-2 px-3 bg-gray-900 rounded " + props.className}>
           {children}
         </div>
       )
