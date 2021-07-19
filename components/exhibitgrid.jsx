@@ -6,10 +6,9 @@ export default function ExhibitGrid(props) {
     <>
       <div
         style={{
-          gridTemplateColumns: "repeat(11, 1fr)",
-          gridTemplateRows: "repeat(12, 12px)"
+          
         }}
-        className="exhibitgrid grid gap-6 my-16"
+        className="exhibitgrid"
       >
         <ExhibitCard
           style={{
@@ -38,7 +37,7 @@ export default function ExhibitGrid(props) {
             gridColumn: "span 4",
             gridRow: "span 7"
           }}
-          className="bg-blue-300"
+          className="bg-blue-300 hidden"
         >
           image 3
 
@@ -49,7 +48,7 @@ export default function ExhibitGrid(props) {
             gridColumn: "span 2",
             gridRow: "span 4"
           }}
-          className="bg-blue-300"
+          className="bg-blue-300 hidden"
         >
           image 4
 
@@ -82,7 +81,7 @@ export default function ExhibitGrid(props) {
             gridColumn: "span 2",
             gridRow: "span 5"
           }}
-          className="bg-blue-300"
+          className="bg-blue-300 hidden"
         >
           image 7
 
@@ -93,7 +92,7 @@ export default function ExhibitGrid(props) {
             gridColumn: "span 2",
             gridRow: "span 5"
           }}
-          className="bg-blue-300"
+          className="bg-blue-300 hidden"
         >
           image 8
 
@@ -104,7 +103,7 @@ export default function ExhibitGrid(props) {
             gridColumn: "10 / span 2",
             gridRow: "5 / span 8"
           }}
-          className="bg-blue-300"
+          className="bg-blue-300 hidden"
         >
           image 9
 
