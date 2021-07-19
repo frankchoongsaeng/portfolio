@@ -1,3 +1,4 @@
+import { useForm } from 'react-hook-form';
 import MainLayout from 'layouts/main';
 import Container from 'components/container';
 import SpecialTitle from 'components/specialtitle';
@@ -7,10 +8,33 @@ import Card from 'components/card';
 import ListItem from 'components/listitem';
 import ItemProficiency from 'components/itemproficiency';
 import Button from 'components/button';
-import ExhibitGrid from 'components/exhibitgrid';
+// import ExhibitGrid from 'components/exhibitgrid';
 import Quote from 'components/quote';
+import { useState } from 'react';
 
 export default function Home() {
+	const { register, handleSubmit } = useForm();
+	const [sendingState, setSendingState] = useState('idle'); // can be one of: idle || sending || completed || failed
+
+	const submitForm = ({ subject, email, fullname, message }) => {
+		if (!subject || !email || !fullname || !message) return false;
+		setSendingState('sending');
+		fetch('/api/hello', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ subject, email, fullname, message }),
+		})
+			.then(res => res.json)
+			.then(() => {
+				setSendingState('completed');
+			})
+			.catch(err => {
+				setSendingState('failed');
+			});
+	};
+
 	return (
 		<>
 			<div className='hidden flex-col relative overflow-hidden'>
@@ -200,7 +224,7 @@ export default function Home() {
 						<Container>
 							<SectionTitle>Ready to talk?</SectionTitle>
 
-							<form onSubmit={e => e.preventDefault()} className='mt-16'>
+							<form onSubmit={handleSubmit(submitForm)} className='mt-16'>
 								<div
 									style={{
 										maxWidth: '728px',
@@ -213,38 +237,55 @@ export default function Home() {
 											name='message'
 											id='message'
 											placeholder='Type your message here...'
-										></textarea>
+											required
+											{...register('message')}
+										/>
 									</div>
 									<div className='flex flex-col items-stretch space-y-4 flex-1 order-first sm:order-none'>
 										<div className='ct-form-control'>
 											<input
 												className='transition-all w-full p-3 border-4 border-gray-500 rounded-md focus:opacity-100 outline-none focus:outline-none opacity-60'
 												type='text'
+												name='full name'
+												aria-label='fullname'
+												title='full name'
 												placeholder='Full Name'
+												required
+												{...register('fullname')}
 											/>
 										</div>
 										<div className='ct-form-control'>
 											<input
 												className='transition-all w-full p-3 border-4 border-gray-500 rounded-md focus:opacity-100 outline-none focus:outline-none opacity-60'
-												type='text'
+												type='email'
+												name='email'
+												title='email'
+												aria-label='email'
 												placeholder='Email'
+												required
+												{...register('email')}
 											/>
 										</div>
 										<div className='ct-form-control'>
 											<input
 												className='transition-all w-full p-3 border-4 border-gray-500 rounded-md focus:opacity-100 outline-none focus:outline-none opacity-60'
 												type='text'
+												name='subject'
+												title='subject'
+												aria-label='subject'
 												placeholder='Subject'
+												required
+												{...register('subject')}
 											/>
 										</div>
 										<div className='hidden sm:block self-center sm:self-start'>
-											<Button className='align' variant='dark'>
+											<Button type='submit' className='align' variant='dark'>
 												Send Message
 											</Button>
 										</div>
 									</div>
 									<div className='self-center sm:hidden'>
-										<Button className='align' variant='dark'>
+										<Button type='submit' className='align' variant='dark'>
 											Send Message
 										</Button>
 									</div>
