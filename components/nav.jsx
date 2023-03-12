@@ -3,6 +3,28 @@ import Container from "components/container";
 import Button from "components/button";
 import { useEffect, useState } from "react";
 
+function NavLinks() {
+  return (
+    <>
+      <Link href="#about">
+        <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
+          About
+        </a>
+      </Link>
+      <span className="inline-block h-4 border-l-2 border-light"></span>
+      <Link href="#contact">
+        <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
+          Contact Me
+        </a>
+      </Link>
+      <span className="inline-block h-4 border-l-2 border-light"></span>
+      <div className="pr-8">
+        <Button>Personal Blog</Button>
+      </div>
+    </>
+  );
+}
+
 export default function Nav() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -67,21 +89,7 @@ export default function Nav() {
 
             <nav className="flex items-center flex-wrap space-x-4 sm:space-x-8 lg:space-x-16 text-sm font-medium overflow-x-auto whitespace-nowrap py-2 px-4 relative z-auto w-full justify-center bg-white">
               <span className="inline-block sm:hidden h-4 border-l-2 border-light"></span>
-              <Link href="#about">
-                <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
-                  About
-                </a>
-              </Link>
-              <span className="inline-block h-4 border-l-2 border-light"></span>
-              <Link href="#contact">
-                <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
-                  Contact Me
-                </a>
-              </Link>
-              <span className="inline-block h-4 border-l-2 border-light"></span>
-              <div className="pr-8">
-                <Button>Personal Blog</Button>
-              </div>
+              <NavLinks />
             </nav>
           </div>
         </div>
@@ -92,21 +100,7 @@ export default function Nav() {
             <div className="flex items-center justify-center">
               {/* <h4 className="text-xl font-bold text-gray-400">LOGO</h4> */}
               <nav className="flex items-center flex-nowrap space-x-4 sm:space-x-8 lg:space-x-16 text-sm font-medium overflow-x-auto whitespace-nowrap py-2 px-4">
-                <Link href="#about">
-                  <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
-                    About
-                  </a>
-                </Link>
-                <span className="inline-block h-4 border-l-2 border-light"></span>
-                <Link href="#contact">
-                  <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
-                    Contact Me
-                  </a>
-                </Link>
-                <span className="inline-block h-4 border-l-2 border-light"></span>
-                <div className="pr-8">
-                  <Button>Personal Blog</Button>
-                </div>
+                <NavLinks />
               </nav>
             </div>
           </Container>
