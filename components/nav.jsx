@@ -6,20 +6,24 @@ import { useEffect, useState } from "react";
 function NavLinks() {
   return (
     <>
-      <Link href="#about">
+      <Link href="/#about">
         <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
           About
         </a>
       </Link>
       <span className="inline-block h-4 border-l-2 border-light"></span>
-      <Link href="#contact">
+      <Link href="/#contact">
         <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
           Contact Me
         </a>
       </Link>
       <span className="inline-block h-4 border-l-2 border-light"></span>
       <div className="pr-8">
-        <Button>Personal Blog</Button>
+        <Link href="/blog">
+          <a>
+            <Button>Personal Blog</Button>
+          </a>
+        </Link>
       </div>
     </>
   );
