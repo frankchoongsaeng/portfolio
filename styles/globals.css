@@ -1,7 +1,5 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -14,8 +12,8 @@
 html,
 body {
   @apply p-0 m-0;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -24,10 +22,8 @@ a {
 }
 
 .script-font {
-  font-family: "Dancing Script"
+  font-family: "Dancing Script";
 }
-
-
 
 /* LAYOUTS */
 /* .container {
@@ -80,4 +76,31 @@ a {
 
 .nav-toggle-btn.open {
   transform: rotateY(90deg);
+}
+
+.exhibitgrid {
+  @apply grid gap-2 sm:gap-4 lg:gap-6 my-16;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(12, 12px);
+}
+
+@media (min-width: 425px) {
+  .exhibitgrid {
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(12, 12px);
+  }
+}
+
+@media (min-width: 768px) {
+  .exhibitgrid {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(12, 12px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .exhibitgrid {
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(12, 12px);
+  }
 }
