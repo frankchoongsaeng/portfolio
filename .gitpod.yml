@@ -5,11 +5,15 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - name: Setup, Install & Build
-    before: nvm install lts/gallium & nvm use lts/gallium
+  - name: Setup
+    before: nvm install lts/gallium
+    command: nvm use lts/gallium
+
+  - name: Dev Server
     init: npm install
     command: npm run dev
 
 ports:
   - port: 3000
+    visibility: public
     description: Website Preview
