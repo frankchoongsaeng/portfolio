@@ -11,6 +11,7 @@ export default function Default({ children }) {
         {/* nav section */}
         <Nav />
       </div>
+      <div className="pt-12"/>
 
       <div className="flex-1">{children}</div>
 
