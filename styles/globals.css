@@ -104,3 +104,12 @@ a {
     grid-template-rows: repeat(12, 12px);
   }
 }
+
+/* BLOG STYLES */
+
+
+/* NOTION STYLES */
+
+.notionrtf_title {
+  @apply font-medium text-lg;
+}

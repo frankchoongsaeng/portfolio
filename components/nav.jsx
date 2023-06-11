@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 function NavLinks() {
   return (
     <>
-      <Link href="/#about">
+      <Link href="/">
         <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
           About
         </a>

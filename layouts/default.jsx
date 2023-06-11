@@ -6,13 +6,13 @@ import Nav from "components/nav";
 
 export default function Default({ children }) {
   return (
-    <div className="select-none">
+    <div className="select-none flex flex-col items-stretch min-h-screen">
       <div className="bg-white">
         {/* nav section */}
         <Nav />
       </div>
 
-      {children}
+      <div className="flex-1">{children}</div>
 
       <footer className="text-center">
         <p className="py-16 px-6 text-sm text-gray-200 bg-black">
