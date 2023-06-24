@@ -1,6 +1,6 @@
 import ContentContainer from "components/contentcontainer";
 import Default from "layouts/default";
-import * as N2R from "../../lib/notionrtf2react";
+import * as N2R from "lib/notionrtf2react";
 
 export default function ViewPost({ contentBlocks }) {
   return (
@@ -18,7 +18,8 @@ export default function ViewPost({ contentBlocks }) {
  * Render the page on the server side each time the page is requested.
  * Posts might get updated frequently, so it makes sense to generate on request.
  */
-import { getPost } from "../../lib/notionservice";
+import { getPost } from "lib/notionservice";
+import React from "react";
 
 export const getServerSideProps = async ({ query }) => {
   const response = await getPost(query.id);

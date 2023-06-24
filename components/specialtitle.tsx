@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function SpecialTitle({ children, position, variant, animationDirection = 'right' }) {
+export default function SpecialTitle({ children, position, variant = '', animationDirection = 'right' }) {
 	const currEntry = useRef({});
 	const observer = useRef(null);
 	const titleRef = useRef(null);
