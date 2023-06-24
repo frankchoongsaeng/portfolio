@@ -4,7 +4,7 @@ type LineDirection = "right" | "left";
 
 export default function SectionTitle({
   children,
-  addLine,
+  addLine = false,
   lineDirection = "right",
 }) {
   return (

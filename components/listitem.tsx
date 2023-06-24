@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function ListItem({ children, link, ...props }) {
+export default function ListItem({ children, link = "#", ...props }) {
   return (
     link
       ? (

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function SpecialTitle({ children, position, variant = '', animationDirection = 'right' }) {
-	const currEntry = useRef({});
-	const observer = useRef(null);
-	const titleRef = useRef(null);
+	const currEntry = useRef<IntersectionObserverEntry>(null);
+	const observer = useRef<IntersectionObserver>(null);
+	const titleRef = useRef<HTMLHeadingElement>(null);
 	const disableAnimation = useRef(true);
 
 	function scrollTitle() {
@@ -18,7 +18,7 @@ export default function SpecialTitle({ children, position, variant = '', animati
 	// first check the width of the screen to determine if
 	// the animation should be disabled
 	useEffect(() => {
-		if (window.innerWidth > '400') {
+		if (window.innerWidth > 400) {
 			const options = {};
 			observer.current = new IntersectionObserver((entries, _observer) => {
 				currEntry.current = entries[0];
