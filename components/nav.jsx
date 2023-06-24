@@ -4,29 +4,31 @@ import Button from "components/button";
 import { useEffect, useState } from "react";
 
 function NavLinks() {
-  return (
-    <>
-      <Link href="/">
-        <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
-          About
-        </a>
+  return <>
+    <Link
+      href="/"
+      className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
+      
+        About
+      
+    </Link>
+    <span className="inline-block h-4 border-l-2 border-light"></span>
+    <Link
+      href="/#contact"
+      className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
+      
+        Contact Me
+      
+    </Link>
+    <span className="inline-block h-4 border-l-2 border-light"></span>
+    <div className="pr-8">
+      <Link href="/blog">
+
+        <Button>Personal Blog</Button>
+
       </Link>
-      <span className="inline-block h-4 border-l-2 border-light"></span>
-      <Link href="/#contact">
-        <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
-          Contact Me
-        </a>
-      </Link>
-      <span className="inline-block h-4 border-l-2 border-light"></span>
-      <div className="pr-8">
-        <Link href="/blog">
-          <a>
-            <Button>Personal Blog</Button>
-          </a>
-        </Link>
-      </div>
-    </>
-  );
+    </div>
+  </>;
 }
 
 export default function Nav() {

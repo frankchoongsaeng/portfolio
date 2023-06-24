@@ -27,17 +27,17 @@ export default function Blog({ postGroups }) {
                     );
 
                     return (
-                      <Link key={id} href={`/blog/${id}`}>
-                        <a className="underline">
-                          {notionrtf.fromTitle(properties.Title.title)}
-                          <span>
-                            {postDate.toLocaleDateString(undefined, {
-                              month: "short",
-                              day: "2-digit",
-                            })}
-                          </span>
-                        </a>
-                      </Link>
+                      (<Link key={id} href={`/blog/${id}`} className="underline">
+
+                        {notionrtf.fromTitle(properties.Title.title)}
+                        <span>
+                          {postDate.toLocaleDateString(undefined, {
+                            month: "short",
+                            day: "2-digit",
+                          })}
+                        </span>
+
+                      </Link>)
                     );
                   })}
                 </div>

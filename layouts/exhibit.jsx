@@ -14,12 +14,16 @@ export default function MainLayout({ children }) {
             <div className="flex items-center justify-between  py-2">
               <h4 className="text-xl font-bold text-gray-400">LOGO</h4>
               <nav className="max-w-max flex items-center space-x-8 text-sm font-medium">
-                <Link href="#about">
-                  <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">About</a>
+                <Link
+                  href="#about"
+                  className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
+                  About
                 </Link>
                 <span className="inline-block h-4 border-l-2 border-light"></span>
-                <Link href="#contact">
-                  <a className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">Contact Me</a>
+                <Link
+                  href="#contact"
+                  className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
+                  Contact Me
                 </Link>
                 <span className="inline-block h-4 border-l-2 border-light"></span>
                 <Button>Return To Home</Button>
@@ -79,5 +83,5 @@ export default function MainLayout({ children }) {
         </p>
       </footer>
     </div>
-  )
+  );
 }
