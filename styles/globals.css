@@ -106,10 +106,7 @@ a {
 }
 
 /* BLOG STYLES */
-
-
-/* NOTION STYLES */
-
-.notionrtf_title {
-  @apply font-medium text-lg;
+.content-container {
+  @apply mx-auto;
+  max-width: 80ch;
 }

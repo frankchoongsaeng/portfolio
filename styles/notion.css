@@ -1,0 +1,36 @@
+/**** NOTION STYLES ****/
+
+/* BLOCKS
+*/
+.notionrtf_title {
+  @apply font-medium text-lg;
+}
+
+.notionrtf_h1 {
+  @apply text-7xl;
+}
+
+.notionrtf-paragraph {
+  @apply text-xl leading-relaxed;
+}
+
+/* ANNOTATION
+*/
+.notionrtf_bold {
+  @apply font-semibold;
+}
+
+.notionrtf_italic {
+  @apply italic;
+}
+
+.notionrtf_strikethrough {
+    @apply underline;
+}
+
+.notionrtf_code {
+    @apply font-mono;
+}
+
+/* COLORS 
+*/
