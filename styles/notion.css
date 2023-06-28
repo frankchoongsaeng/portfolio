@@ -46,3 +46,22 @@
 
 /* COLORS 
 */
+.notionrtf_bg_orange {
+  @apply bg-red-800;
+}
+
+.notionrtf_bg_gray {
+  @apply bg-gray-500;
+}
+
+.notionrtf_bg_yellow {
+  @apply bg-yellow-600;
+}
+
+.notionrtf_bg_green {
+  @apply bg-green-800;
+}
+
+.notionrtf_bg_blue {
+  @apply bg-blue-600;
+}

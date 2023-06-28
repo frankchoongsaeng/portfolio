@@ -3,6 +3,7 @@ import Container from "components/container";
 import DefaultLayout from "layouts/default";
 import decoder from "lib/notion/decoders/reactdecoder";
 import { getPosts } from "lib/notionservice";
+import { formatDate } from "lib/utils";
 
 export default function Blog({ postGroups }) {
   return (
@@ -21,20 +22,21 @@ export default function Blog({ postGroups }) {
                 <p className="text-6xl font-black">{year}</p>
                 <div className="flex flex-col gap-10 max-w-[80ch]">
                   {posts.map(({ id, properties }) => {
-                    const postDate = new Date(
-                      properties.updated.last_edited_time
-                    );
-
                     return (
-                      <Link key={id} href={`/blog/${id}`} className="underline">
-                        {decoder.decodeTitle(properties.Title)}
-                        <span>
-                          {postDate.toLocaleDateString(undefined, {
-                            month: "short",
-                            day: "2-digit",
+                      <div>
+                        <Link
+                          key={id}
+                          href={`/blog/${id}`}
+                          className="hover:underline "
+                        >
+                          {decoder.decodeTitle(properties.Title, {
+                            className: "text-2xl",
                           })}
+                        </Link>
+                        <span className="text-gray-500">
+                          {formatDate(properties.updated.last_edited_time)}
                         </span>
-                      </Link>
+                      </div>
                     );
                   })}
                 </div>

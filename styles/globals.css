@@ -105,9 +105,13 @@ a {
   }
 }
 
+.small-icon {
+  @apply w-4 h-4;
+}
+
 /* BLOG STYLES */
 .viewpost-layout {
-  @apply grid;
+  @apply grid gap-y-4;
   grid-template-columns: 1fr 700px 1fr;
 }
 
@@ -118,4 +122,8 @@ a {
 .content-container {
   @apply mx-auto;
   max-width: 80ch;
+}
+
+.tag {
+  @apply p-2 text-xs font-semibold rounded-full capitalize tracking-wide text-white inline-block;
 }
