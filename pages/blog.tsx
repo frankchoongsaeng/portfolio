@@ -54,7 +54,7 @@ export default function Blog({ postGroups }) {
 
 export const getServerSideProps = async () => {
   const response = await getPosts();
-  const postGroups = response.data.results;
+  const postGroups = response.results;
 
   //remove this line
   // postGroups.push({ year: 2022, posts: postGroups[0].posts });

@@ -27,7 +27,9 @@ export default function ViewPost({
           </>
           <>
             <Nothing />
-            <div>{renderTitle()}</div>
+            <div>
+              <div className="title-container">{renderTitle()}</div>
+            </div>
             <Nothing />
           </>
           <>

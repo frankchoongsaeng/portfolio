@@ -8,24 +8,27 @@
 
 import React, { ReactElement } from "react";
 import N, { Decoder } from "lib/notion/core/types";
-import { Client } from "@notionhq/client";
 
 export class ReactDecoder extends Decoder<ReactElement> {
-  // static decodeBlock: (block: N.Block) => ReactElement = this.fromBlock;
-
-  // constructor(public client: Client) {
-  //   super(client);
-  // }
-
-  isBlock(obj: any): boolean {
+  private isBlock(obj: any): boolean {
     return obj && (obj.object === "block" || obj.type === "text");
   }
 
-  fromBlocks(blocks: N.Block[]): ReactElement {
-    throw "missing implementation";
+  /**
+   * Converts an annotation into a list of classes
+   * @param annotation
+   * @returns classes generated from annotation
+   */
+  decodeAnnotations(annotation: N.Annotation): string[] {
+    const classes: string[] = [];
+    Object.entries(annotation).forEach(([k, val]) => {
+      if (k === "color") classes.push(`notionrtf_color-${val}`);
+      if (val) classes.push(`notionrtf_${k}`);
+    });
+    return classes;
   }
 
-  mapRichTexts(richTexts: N.RichTextObject[]): ReactElement[] {
+  decodeRichTexts(richTexts: N.RichTextObject[]): ReactElement[] {
     return richTexts.map((richText, idx) => {
       const annotationClasses = this.decodeAnnotations(
         richText.annotations
@@ -77,51 +80,45 @@ export class ReactDecoder extends Decoder<ReactElement> {
 
     switch (block.type) {
       case N.BlockType.Heading1:
-        return React.createElement("h1", {}, []);
-        break;
+        return React.createElement(
+          "h1",
+          { className: `notionrtf_h1`, ...props },
+          this.decodeRichTexts(block.heading_1.rich_text)
+        );
       case N.BlockType.Heading2:
-        return React.createElement("h2", {}, []);
+        return React.createElement(
+          "h2",
+          { className: `notionrtf_h2`, ...props },
+          this.decodeRichTexts(block.heading_2.rich_text)
+        );
 
       case N.BlockType.Heading3:
-        return React.createElement("h3", {}, []);
+        return React.createElement(
+          "h3",
+          { className: `notionrtf_h3`, ...props },
+          this.decodeRichTexts(block.heading_3.rich_text)
+        );
 
       case N.BlockType.Paragraph:
         const p = block as N.Paragraph;
         const richText =
           p.paragraph.rich_text.length === 0
             ? React.createElement("br", {})
-            : this.mapRichTexts(p.paragraph.rich_text);
+            : this.decodeRichTexts(p.paragraph.rich_text);
 
         return React.createElement(
           "p",
-          { className: `notionrtf-paragraph`, ...props },
+          { className: `notionrtf_paragraph`, ...props },
           p.has_children ? p.paragraph.children.map(this.decodeBlock) : richText
         );
 
-      case "toggle":
-        let children;
-
-        if (block.has_children) {
-          // lazy load the children as react lazy components
-          // extract into a react component because lazy expects a react 
-          // component and not a random function
-          
-
-          children = React.lazy(async () => {
-            const c = await this.client.blocks.children.list({
-              block_id: block.id,
-            });
-            const els = c.results.map((b, idx) =>
-              this.decodeBlock(b as N.Block, { key: idx })
-            );
-            return React.createElement("div", {}, els)
-          });
-        }
-
+      case N.BlockType.Toggle:
         return React.createElement(
           "div",
           { className: "notionrtf_toggle", ...props },
-          []
+          block.toggle.children?.map((child, idx) =>
+            this.decodeBlock(child, { ...props, key: idx })
+          )
         );
 
       default:
@@ -129,29 +126,15 @@ export class ReactDecoder extends Decoder<ReactElement> {
     }
   }
 
-  /**
-   * Converts an annotation into a list of classes
-   * @param annotation
-   * @returns classes generated from annotation
-   */
-  decodeAnnotations(annotation: N.Annotation): string[] {
-    const classes: string[] = [];
-    Object.entries(annotation).forEach(([k, val]) => {
-      if (k === "color") classes.push(`notionrtf_color-${val}`);
-      if (val) classes.push(`notionrtf_${k}`);
-    });
-    return classes;
-  }
+  decodeTitle(titleObject, props = {}) {
+    if (!titleObject || titleObject.type !== "title")
+      throw `expected title but found: ${titleObject}`;
 
-  decodeTitle(title, key = undefined) {
-    if (!title || title.type !== "title")
-      throw `expected title but found: ${title}`;
-
-    const titles = title.title;
+    const titleContents = titleObject.title;
     return React.createElement(
       "div",
-      { className: "notionrtf_title", key: key },
-      this.mapRichTexts(titles)
+      { className: "notionrtf_title", ...props },
+      this.decodeRichTexts(titleContents)
     );
   }
 }

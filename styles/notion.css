@@ -1,20 +1,28 @@
 /**** NOTION STYLES ****/
 
-/* BLOCKS
+/* BLOCKS - TYPOGRAPHY
 */
 .notionrtf_title {
-  @apply font-medium text-lg;
+  @apply text-5xl font-bold mb-4 tracking-tight leading-none;
 }
 
 .notionrtf_h1 {
-  @apply text-7xl;
+  @apply text-4xl font-bold mb-4;
 }
 
-.notionrtf-paragraph {
-  @apply leading-relaxed;
+.notionrtf_h2 {
+  @apply text-3xl font-bold mb-4;
 }
 
-/* ANNOTATION
+.notionrtf_h3 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.notionrtf_paragraph {
+  @apply mb-3 text-gray-500  leading-loose font-serif text-lg;
+}
+
+/* ANNOTATION - FONT STYLE
 */
 .notionrtf_bold {
   @apply font-semibold;
@@ -25,15 +33,15 @@
 }
 
 .notionrtf_strikethrough {
-    @apply line-through;
+  @apply line-through;
 }
 
 .notionrtf_underline {
-    @apply underline;
+  @apply underline;
 }
 
 .notionrtf_code {
-    @apply font-mono;
+  @apply font-mono;
 }
 
 /* COLORS 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
 
 @tailwind base;
@@ -111,6 +111,9 @@ a {
   grid-template-columns: 1fr 700px 1fr;
 }
 
+.title-container {
+  width: 120%;
+}
 
 .content-container {
   @apply mx-auto;

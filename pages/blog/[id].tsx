@@ -1,29 +1,18 @@
-import ContentContainer from "components/contentcontainer";
 import ViewPostLayout from "layouts/viewpost";
 import ReactDecoder from "lib/notion/decoders/reactdecoder";
-import {
-  getPost,
-  getPost2,
-  getPageMeta,
-  getPageMeta2,
-} from "lib/notionservice";
+import { getBlockChildren, getPageMeta } from "lib/notionservice";
 import React, { useEffect } from "react";
 import N from "lib/notion/core/types";
-import Container from "components/container";
 
 type ViewPostProps = {
   contentBlocks: N.Block[];
   title: N.Block;
-  pageMeta: N.Block;
+  pageMeta: any;
 };
 
-export default function ViewPost({
-  contentBlocks,
-  pageMeta,
-  x,
-}: ViewPostProps) {
+export default function ViewPost({ contentBlocks, pageMeta }: ViewPostProps) {
   useEffect(() => {
-    console.log({ x });
+    console.log({ contentBlocks });
   });
 
   return (
@@ -47,12 +36,11 @@ export default function ViewPost({
  * Posts might get updated frequently, so it makes sense to generate on request.
  */
 export const getServerSideProps = async ({ query }) => {
-  const [pageMeta, pageContentResponse, x] = await Promise.all([
-    getPageMeta2(query.id),
-    getPost(query.id),
-    getPost2(query.id),
+  const [pageMeta, pageContentResponse] = await Promise.all([
+    getPageMeta(query.id),
+    getBlockChildren(query.id),
   ]);
-  const contentBlocks = pageContentResponse.data.results;
+  const contentBlocks = pageContentResponse.results;
 
-  return { props: { contentBlocks, pageMeta, x } };
+  return { props: { contentBlocks, pageMeta } };
 };
