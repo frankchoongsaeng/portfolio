@@ -11,7 +11,7 @@
 }
 
 .notionrtf-paragraph {
-  @apply text-xl leading-relaxed;
+  @apply leading-relaxed;
 }
 
 /* ANNOTATION
@@ -25,6 +25,10 @@
 }
 
 .notionrtf_strikethrough {
+    @apply line-through;
+}
+
+.notionrtf_underline {
     @apply underline;
 }
 

@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import axios from "axios";
 import Container from "components/container";
 import DefaultLayout from "layouts/default";
-import * as notionrtf from "../lib/notionrtf2react";
+import decoder from "lib/notion/decoders/reactdecoder";
+import { getPosts } from "lib/notionservice";
 
 export default function Blog({ postGroups }) {
   return (
@@ -27,17 +26,15 @@ export default function Blog({ postGroups }) {
                     );
 
                     return (
-                      (<Link key={id} href={`/blog/${id}`} className="underline">
-
-                        {notionrtf.fromTitle(properties.Title.title)}
+                      <Link key={id} href={`/blog/${id}`} className="underline">
+                        {decoder.decodeTitle(properties.Title)}
                         <span>
                           {postDate.toLocaleDateString(undefined, {
                             month: "short",
                             day: "2-digit",
                           })}
                         </span>
-
-                      </Link>)
+                      </Link>
                     );
                   })}
                 </div>
@@ -54,15 +51,14 @@ export default function Blog({ postGroups }) {
  * Render the page on the server side each time the page is requested.
  * Posts might get updated frequently, so it makes sense to generate on request.
  */
-import { getPosts } from "../lib/notionservice";
 
 export const getServerSideProps = async () => {
   const response = await getPosts();
   const postGroups = response.data.results;
 
   //remove this line
-  postGroups.push({ year: 2022, posts: postGroups[0].posts });
-  postGroups.push({ year: 2021, posts: postGroups[0].posts });
+  // postGroups.push({ year: 2022, posts: postGroups[0].posts });
+  // postGroups.push({ year: 2021, posts: postGroups[0].posts });
 
   return { props: { postGroups } };
 };

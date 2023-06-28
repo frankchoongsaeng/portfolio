@@ -1,16 +1,44 @@
 import ContentContainer from "components/contentcontainer";
-import Default from "layouts/default";
-import * as N2R from "lib/notionrtf2react";
+import ViewPostLayout from "layouts/viewpost";
+import ReactDecoder from "lib/notion/decoders/reactdecoder";
+import {
+  getPost,
+  getPost2,
+  getPageMeta,
+  getPageMeta2,
+} from "lib/notionservice";
+import React, { useEffect } from "react";
+import N from "lib/notion/core/types";
+import Container from "components/container";
 
-export default function ViewPost({ contentBlocks }) {
+type ViewPostProps = {
+  contentBlocks: N.Block[];
+  title: N.Block;
+  pageMeta: N.Block;
+};
+
+export default function ViewPost({
+  contentBlocks,
+  pageMeta,
+  x,
+}: ViewPostProps) {
+  useEffect(() => {
+    console.log({ x });
+  });
+
   return (
-    <Default>
-      <ContentContainer>
-        <div>
-          {contentBlocks.map((block) => N2R.fromBlock(block, block.id))}
-        </div>
-      </ContentContainer>
-    </Default>
+    <ViewPostLayout
+      renderTags={() => <div></div>}
+      renderMeta={() => <div>Published Jan 20, 2022 | Personal</div>}
+      renderTitle={() => ReactDecoder.decodeTitle(pageMeta.properties.Title)}
+      renderContent={() => (
+        <>
+          {contentBlocks.map((block) =>
+            ReactDecoder.decodeBlock(block, { key: block.id })
+          )}
+        </>
+      )}
+    />
   );
 }
 
@@ -18,12 +46,13 @@ export default function ViewPost({ contentBlocks }) {
  * Render the page on the server side each time the page is requested.
  * Posts might get updated frequently, so it makes sense to generate on request.
  */
-import { getPost } from "lib/notionservice";
-import React from "react";
-
 export const getServerSideProps = async ({ query }) => {
-  const response = await getPost(query.id);
-  const contentBlocks = response.data.results;
+  const [pageMeta, pageContentResponse, x] = await Promise.all([
+    getPageMeta2(query.id),
+    getPost(query.id),
+    getPost2(query.id),
+  ]);
+  const contentBlocks = pageContentResponse.data.results;
 
-  return { props: { contentBlocks } };
+  return { props: { contentBlocks, pageMeta, x } };
 };

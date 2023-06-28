@@ -106,6 +106,12 @@ a {
 }
 
 /* BLOG STYLES */
+.viewpost-layout {
+  @apply grid;
+  grid-template-columns: 1fr 700px 1fr;
+}
+
+
 .content-container {
   @apply mx-auto;
   max-width: 80ch;

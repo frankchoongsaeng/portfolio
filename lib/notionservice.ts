@@ -1,4 +1,9 @@
-import axios from "axios";
+import axios, { AxiosPromise } from "axios";
+import N from "lib/notion/core/types";
+
+interface NotionResults {
+  results: N.Block[];
+}
 
 const notionApi = axios.create({
   baseURL: `https://api.notion.com/v1/`,
@@ -28,7 +33,7 @@ function groupByYear(response) {
   return response;
 }
 
-export function getPosts() {
+export function getPosts(): AxiosPromise {
   const filter = {
     property: "is_published",
     checkbox: { equals: true },
@@ -51,12 +56,16 @@ export function getPosts() {
 export function getPost(id) {
   return getBlockChildren(id).then((res) => {
     const blocks = res.data.results;
-    const childrens = blocks.map((block) => {
-      if (block.has_children)
-        return getBlockChildren(block.id).then(({ data: { results } }) => ({
+    const childrens = blocks.map(async (block) => {
+      if (block.has_children) {
+        const {
+          data: { results },
+        } = await getBlockChildren(block.id);
+        return {
           ...block,
           children: results,
-        }));
+        };
+      }
 
       return Promise.resolve(block);
     });
@@ -67,6 +76,22 @@ export function getPost(id) {
   });
 }
 
-export function getBlockChildren(blockId) {
+export function getPageMeta(pageId: string): AxiosPromise {
+  return notionApi.get(`/pages/${pageId}`);
+}
+
+export function getBlockChildren(blockId): AxiosPromise<NotionResults> {
   return notionApi.get(`/blocks/${blockId}/children`);
+}
+
+import { Client } from "@notionhq/client";
+
+const notion = new Client({ auth: process.env.NOTION_INTEGRATION_KEY });
+
+export function getPageMeta2(pageId: string) {
+  return notion.pages.retrieve({ page_id: pageId });
+}
+
+export function getPost2(id) {
+  return notion.blocks.children.list({ block_id: id });
 }
