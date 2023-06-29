@@ -10,7 +10,7 @@ export default function Blog({ postGroups }) {
     <DefaultLayout>
       <div className="py-12">
         <Container>
-          <h2 className="text-2xl">Personal Blog</h2>
+          <h2 className="text-2xl">Posts</h2>
         </Container>
       </div>
       <Container>
@@ -23,12 +23,8 @@ export default function Blog({ postGroups }) {
                 <div className="flex flex-col gap-10 max-w-[80ch]">
                   {posts.map(({ id, properties }) => {
                     return (
-                      <div>
-                        <Link
-                          key={id}
-                          href={`/blog/${id}`}
-                          className="hover:underline "
-                        >
+                      <div key={id}>
+                        <Link href={`/blog/${id}`} className="hover:underline ">
                           {decoder.decodeTitle(properties.Title, {
                             className: "text-2xl",
                           })}

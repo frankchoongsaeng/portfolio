@@ -35,8 +35,8 @@ export function getPosts() {
     direction: "ascending" | "descending";
   }> = [
     {
-      property: "updated",
-      direction: "ascending",
+      property: "publish_date",
+      direction: "descending",
     },
   ];
 
