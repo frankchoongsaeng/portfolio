@@ -10,8 +10,14 @@ import React, { ReactElement } from "react";
 import N, { Decoder } from "lib/notion/core/types";
 
 export class ReactDecoder extends Decoder<ReactElement> {
+  defaultPrefix = "notionrtf";
+
   private isBlock(obj: any): boolean {
     return obj && (obj.object === "block" || obj.type === "text");
+  }
+
+  private prefix(className: string): string {
+    return `${this.defaultPrefix}_${className}`;
   }
 
   /**
@@ -22,13 +28,13 @@ export class ReactDecoder extends Decoder<ReactElement> {
   decodeAnnotations(annotation: N.Annotation): string[] {
     const classes: string[] = [];
     Object.entries(annotation).forEach(([k, val]) => {
-      if (k === "color") classes.push(`notionrtf_color_${val}`);
-      else if (val) classes.push(`notionrtf_${k}`);
+      if (k === "color") classes.push(this.prefix(`color_${val}`));
+      else if (val) classes.push(this.prefix(k));
     });
     return classes;
   }
 
-  decodeRichTexts(richTexts: N.RichTextObject[], props = {}): ReactElement[] {
+  decodeRichTexts(richTexts: N.RichTextObject[]): ReactElement[] {
     return richTexts.map((richText, idx) =>
       this.decodeRichText(richText, { key: idx })
     );
@@ -41,14 +47,18 @@ export class ReactDecoder extends Decoder<ReactElement> {
     return richText.href === null
       ? React.createElement(
           "span",
-          { className: `notionrtf_text ${annotationClasses}` },
+          {
+            className: `${this.prefix("text")} ${annotationClasses}`,
+            ...props,
+          },
           richText.text.content
         )
       : React.createElement(
           "a",
           {
-            className: `notionrtf_link ${annotationClasses}`,
+            className: `${this.prefix("link")} ${annotationClasses}`,
             href: richText.href,
+            ...props,
           },
           richText.text.content
         );
@@ -65,20 +75,20 @@ export class ReactDecoder extends Decoder<ReactElement> {
       case N.BlockType.Heading1:
         return React.createElement(
           "h1",
-          { className: `notionrtf_h1`, ...props },
+          { className: this.prefix("h1"), ...props },
           this.decodeRichTexts(block.heading_1.rich_text)
         );
       case N.BlockType.Heading2:
         return React.createElement(
           "h2",
-          { className: `notionrtf_h2`, ...props },
+          { className: this.prefix("h2"), ...props },
           this.decodeRichTexts(block.heading_2.rich_text)
         );
 
       case N.BlockType.Heading3:
         return React.createElement(
           "h3",
-          { className: `notionrtf_h3`, ...props },
+          { className: this.prefix("h3"), ...props },
           this.decodeRichTexts(block.heading_3.rich_text)
         );
 
@@ -90,7 +100,7 @@ export class ReactDecoder extends Decoder<ReactElement> {
 
         return React.createElement(
           "p",
-          { className: `notionrtf_paragraph`, ...props },
+          { className: this.prefix("paragraph"), ...props },
           block.has_children
             ? block.paragraph.children.map(this.decodeBlock)
             : richText
@@ -99,7 +109,7 @@ export class ReactDecoder extends Decoder<ReactElement> {
       case N.BlockType.Toggle:
         return React.createElement(
           "div",
-          { className: "notionrtf_toggle", ...props },
+          { className: this.prefix("toggle"), ...props },
           block.toggle.children?.map((child, idx) =>
             this.decodeBlock(child, { ...props, key: idx })
           )
@@ -108,8 +118,37 @@ export class ReactDecoder extends Decoder<ReactElement> {
       case N.BlockType.Quote:
         return React.createElement(
           "blockquote",
-          { className: "notionrtf_quote", ...props },
+          { className: this.prefix("quote"), ...props },
           this.decodeRichTexts(block.quote.rich_text)
+        );
+
+      case N.BlockType.Image:
+        let src = "";
+        switch (block.image.type) {
+          case "external":
+            src = block.image.external.url;
+            break;
+          case "file":
+            src = block.image.file.url;
+        }
+        return React.createElement(
+          "div",
+          { className: this.prefix("image_wrapper"), ...props },
+          [
+            React.createElement("img", {
+              className: this.prefix("img"),
+              src,
+              ...props,
+            }),
+            React.createElement(
+              "figcaption",
+              {
+                className: this.prefix("figcaption"),
+                ...props,
+              },
+              this.decodeRichTexts(block.image.caption)
+            ),
+          ]
         );
 
       default:
@@ -124,7 +163,7 @@ export class ReactDecoder extends Decoder<ReactElement> {
     const titleContents = titleObject.title;
     return React.createElement(
       "div",
-      { className: "notionrtf_title", ...props },
+      { className: this.prefix("title"), ...props },
       this.decodeRichTexts(titleContents)
     );
   }

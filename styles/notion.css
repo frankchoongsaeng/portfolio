@@ -1,5 +1,18 @@
 /**** NOTION STYLES ****/
 
+/* BLOCKS - IMG */
+.notionrtf_image_wrapper {
+  @apply flex flex-col w-full gap-2
+}
+
+.notionrtf_img {
+  @apply w-full;
+}
+
+.notionrtf_figcaption {
+  @apply text-sm text-gray-400;
+}
+
 /* BLOCKS - QUOTE */
 .notionrtf_quote {
   @apply font-semibold tracking-tight text-2xl lg:text-3xl relative my-8 text-gray-500;

@@ -11,6 +11,27 @@ namespace Notion {
     type?: string;
   }
 
+  export interface BaseFileObject {
+    type: "external" | "file";
+  }
+
+  export interface HostedFileObject extends BaseFileObject {
+    type: "file";
+    file: {
+      url: string;
+      expiry_time: string;
+    };
+  }
+
+  export interface ExternalFileObject extends BaseFileObject {
+    type: "external";
+    external: {
+      url: string;
+    };
+  }
+
+  export type File = ExternalFileObject | HostedFileObject;
+
   /**
    * User objects will always contain object and id keys, as described below.
    * The remaining properties may appear if the user is being rendered in a rich text or page property context.
@@ -181,6 +202,11 @@ namespace Notion {
     };
   }
 
+  export interface Image extends BlockObject {
+    type: BlockType.Image;
+    image: { caption: RichText } & File;
+  }
+
   /** All possible types of Blocks */
   export type Block =
     | Bookmark
@@ -190,6 +216,7 @@ namespace Notion {
     | Paragraph
     | Toggle
     | Quote
+    | Image;
 }
 
 /**
