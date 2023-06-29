@@ -22,36 +22,19 @@ export class ReactDecoder extends Decoder<ReactElement> {
   decodeAnnotations(annotation: N.Annotation): string[] {
     const classes: string[] = [];
     Object.entries(annotation).forEach(([k, val]) => {
-      if (k === "color") classes.push(`notionrtf_color-${val}`);
-      if (val) classes.push(`notionrtf_${k}`);
+      if (k === "color") classes.push(`notionrtf_color_${val}`);
+      else if (val) classes.push(`notionrtf_${k}`);
     });
     return classes;
   }
 
-  decodeRichTexts(richTexts: N.RichTextObject[]): ReactElement[] {
-    return richTexts.map((richText, idx) => {
-      const annotationClasses = this.decodeAnnotations(
-        richText.annotations
-      ).join(" ");
-      return richText.href === null
-        ? React.createElement(
-            "span",
-            { className: `notionrtf_text ${annotationClasses}`, key: idx },
-            richText.text.content
-          )
-        : React.createElement(
-            "a",
-            {
-              className: `notionrtf_link ${annotationClasses}`,
-              key: idx,
-              href: richText.href,
-            },
-            richText.text.content
-          );
-    });
+  decodeRichTexts(richTexts: N.RichTextObject[], props = {}): ReactElement[] {
+    return richTexts.map((richText, idx) =>
+      this.decodeRichText(richText, { key: idx })
+    );
   }
 
-  decodeRichText(richText: N.RichTextObject): ReactElement {
+  decodeRichText(richText: N.RichTextObject, props = {}): ReactElement {
     const annotationClasses = this.decodeAnnotations(richText.annotations).join(
       " "
     );
@@ -100,16 +83,17 @@ export class ReactDecoder extends Decoder<ReactElement> {
         );
 
       case N.BlockType.Paragraph:
-        const p = block as N.Paragraph;
         const richText =
-          p.paragraph.rich_text.length === 0
+          block.paragraph.rich_text.length === 0
             ? React.createElement("br", {})
-            : this.decodeRichTexts(p.paragraph.rich_text);
+            : this.decodeRichTexts(block.paragraph.rich_text);
 
         return React.createElement(
           "p",
           { className: `notionrtf_paragraph`, ...props },
-          p.has_children ? p.paragraph.children.map(this.decodeBlock) : richText
+          block.has_children
+            ? block.paragraph.children.map(this.decodeBlock)
+            : richText
         );
 
       case N.BlockType.Toggle:
@@ -119,6 +103,13 @@ export class ReactDecoder extends Decoder<ReactElement> {
           block.toggle.children?.map((child, idx) =>
             this.decodeBlock(child, { ...props, key: idx })
           )
+        );
+
+      case N.BlockType.Quote:
+        return React.createElement(
+          "blockquote",
+          { className: "notionrtf_quote", ...props },
+          this.decodeRichTexts(block.quote.rich_text)
         );
 
       default:

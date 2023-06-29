@@ -25,6 +25,10 @@ a {
   font-family: "Dancing Script";
 }
 
+blockquote {
+  quotes: "“" "”" "‘" "’";
+}
+
 /* LAYOUTS */
 /* .container {
   @apply w-full px-6;
@@ -63,6 +67,14 @@ a {
 }
 
 .btn:active .arrow {
+  @apply translate-x-0;
+}
+
+.btn:hover .arrow-left {
+  @apply -translate-x-2;
+}
+
+.btn:active .arrow-left {
   @apply translate-x-0;
 }
 
@@ -111,19 +123,43 @@ a {
 
 /* BLOG STYLES */
 .viewpost-layout {
-  @apply grid gap-y-4;
-  grid-template-columns: 1fr 700px 1fr;
 }
 
-.title-container {
-  width: 120%;
+.meta-container {
+  max-width: 70ch;
 }
 
 .content-container {
   @apply mx-auto;
-  max-width: 80ch;
+  max-width: 70ch;
 }
 
 .tag {
-  @apply p-2 text-xs font-semibold rounded-full capitalize tracking-wide text-white inline-block;
+  @apply p-1 text-xs  rounded tracking-wide text-white inline-block;
+}
+
+
+.notionrtf_h1 {
+  @apply tracking-tight;
+}
+
+.notionrtf_h2 {
+  @apply tracking-tight;
+}
+
+.notionrtf_h3 {
+  @apply tracking-tight;
+}
+
+
+@media (min-width: 1024px) {
+  .title-container {
+    width: 120%;
+  }
+
+  .notionrtf_quote {
+    width: 120%;
+    left: 25%;
+    transform: translateX(-25%);
+  }
 }

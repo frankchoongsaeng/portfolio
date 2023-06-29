@@ -172,6 +172,15 @@ namespace Notion {
     };
   }
 
+  export interface Quote extends BlockObject {
+    type: BlockType.Quote;
+    quote: {
+      rich_text: RichText;
+      color: Color;
+      children?: Block[];
+    };
+  }
+
   /** All possible types of Blocks */
   export type Block =
     | Bookmark
@@ -179,7 +188,8 @@ namespace Notion {
     | Heading2
     | Heading3
     | Paragraph
-    | Toggle;
+    | Toggle
+    | Quote
 }
 
 /**

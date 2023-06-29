@@ -1,9 +1,18 @@
 /**** NOTION STYLES ****/
 
+/* BLOCKS - QUOTE */
+.notionrtf_quote {
+  @apply font-semibold tracking-tight text-2xl lg:text-3xl relative my-8 text-gray-500;
+}
+
+.notionrtf_quote::before {
+  content: "“";
+}
+
 /* BLOCKS - TYPOGRAPHY
 */
 .notionrtf_title {
-  @apply text-5xl font-bold mb-4 tracking-tight leading-none;
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-none;
 }
 
 .notionrtf_h1 {
