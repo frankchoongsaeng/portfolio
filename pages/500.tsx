@@ -2,51 +2,53 @@ import Link from "next/link";
 
 export default function Error500(props) {
   return (
-    <div className="w-screen h-screen bg-gray-200 flex flex-col justify-center items-center gap-8 p-4">
-      <p className="text-xl font-bold text-gray-400 max-w-[35ch] text-center">
+    <div className="w-screen h-full min-h-screen bg-gray-200  space-y-8 p-4">
+      <p className="text-xl font-bold text-gray-400 max-w-[35ch] mx-auto text-center">
         Oh no! Something's wrong
       </p>
-      <div className="w-full max-w-[400px]">
+      <div className="w-full h-[150px] lg:h-[310px] max-w-[250px] lg:max-w-[400px] mx-auto">
         <SVG />
       </div>
       <h1 className="text-4xl md:text-5xl lg:text-7xl tracking-tighter font-bold text-center">
         Agent <span className="italic">500</span> strikes again!
       </h1>
-      <p className="text-xl lg:text-2xl max-w-[35ch] text-center">
+      <p className="text-xl lg:text-2xl max-w-[35ch] text-center mx-auto">
         I'm trying to eradicate these bugs so we can get back to a smooth
         experience. In the meantime, let's get you somewhere safe.
       </p>
 
-      <Link
-        href="/"
-        className={`btn flex items-center px-4 py-2 rounded border-2 lg:text-xl ${
-          props.variant === "light"
-            ? "border-gray-200  text-gray-100 focus:outline-white"
-            : "border-gray-600  text-gray-700 focus:outline-black"
-        } font-semibold`}
-      >
-        <span
-          className={`arrow-left transition-transform transform translate-x-0 inline-block w-6 h-6 mr-2 ${
-            props.variant === "light" ? "text-gray-100" : "text-gray-600"
-          }`}
+      <div className="flex justify-center">
+        <Link
+          href="/"
+          className={`btn mx-auto inline-flex items-center px-4 py-2 rounded border-2 lg:text-xl ${
+            props.variant === "light"
+              ? "border-gray-200  text-gray-100 focus:outline-white"
+              : "border-gray-600  text-gray-700 focus:outline-black"
+          } font-semibold`}
         >
-          <svg
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.5}
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
+          <span
+            className={`arrow-left transition-transform transform translate-x-0 inline-block w-6 h-6 mr-2 ${
+              props.variant === "light" ? "text-gray-100" : "text-gray-600"
+            }`}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-            />
-          </svg>
-        </span>
-        Let's get out of here!
-      </Link>
+            <svg
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.5}
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+              />
+            </svg>
+          </span>
+          Let's get out of here!
+        </Link>
+      </div>
     </div>
   );
 }
