@@ -152,14 +152,12 @@ blockquote {
 }
 
 
+.notionrtf_link {
+  @apply underline;
+}
+
 @media (min-width: 1024px) {
   .title-container {
     width: 120%;
-  }
-
-  .notionrtf_quote {
-    width: 120%;
-    left: 25%;
-    transform: translateX(-25%);
   }
 }

@@ -2,7 +2,7 @@
 
 /* BLOCKS - IMG */
 .notionrtf_image_wrapper {
-  @apply flex flex-col w-full gap-2
+  @apply flex flex-col w-full gap-2;
 }
 
 .notionrtf_img {
@@ -15,7 +15,7 @@
 
 /* BLOCKS - QUOTE */
 .notionrtf_quote {
-  @apply font-semibold tracking-tight text-2xl lg:text-3xl relative my-8 text-gray-500;
+  @apply font-semibold tracking-tight text-2xl lg:text-3xl relative my-8 text-gray-500 pl-6 border-l-4;
 }
 
 .notionrtf_quote::before {
