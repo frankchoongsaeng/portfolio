@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
 
 @tailwind base;
@@ -23,6 +23,10 @@ a {
 
 .script-font {
   font-family: "Dancing Script";
+}
+
+blockquote {
+  quotes: "“" "”" "‘" "’";
 }
 
 /* LAYOUTS */
@@ -66,6 +70,14 @@ a {
   @apply translate-x-0;
 }
 
+.btn:hover .arrow-left {
+  @apply -translate-x-2;
+}
+
+.btn:active .arrow-left {
+  @apply translate-x-0;
+}
+
 .fixed-nav {
   transform-style: preserve-3d;
 }
@@ -102,5 +114,50 @@ a {
   .exhibitgrid {
     grid-template-columns: repeat(11, 1fr);
     grid-template-rows: repeat(12, 12px);
+  }
+}
+
+.small-icon {
+  @apply w-4 h-4;
+}
+
+/* BLOG STYLES */
+.viewpost-layout {
+}
+
+.meta-container {
+  max-width: 70ch;
+}
+
+.content-container {
+  @apply mx-auto;
+  max-width: 70ch;
+}
+
+.tag {
+  @apply p-1 text-xs  rounded tracking-wide text-white inline-block;
+}
+
+
+.notionrtf_h1 {
+  @apply tracking-tight;
+}
+
+.notionrtf_h2 {
+  @apply tracking-tight;
+}
+
+.notionrtf_h3 {
+  @apply tracking-tight;
+}
+
+
+.notionrtf_link {
+  @apply underline underline-offset-2 hover:text-gray-700;
+}
+
+@media (min-width: 1024px) {
+  .title-container {
+    width: 120%;
   }
 }

@@ -1,17 +1,9 @@
 import axios from "axios";
+import * as notion from "../../lib/notionservice";
 
-export default (req, res) => {
-  axios
-    .get(
-      `https://api.notion.com/v1/databases/${process.env.NOTION_BLOG_DB_ID}`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.NOTION_INTEGRATION_KEY}`,
-          "Content-Type": "application/json",
-          "Notion-Version": "2021-08-16",
-        },
-      }
-    )
+export default async (req, res) => {
+  return notion
+    .getPosts()
     .then((response) => {
       res.status(response.status).json(response.data);
     })

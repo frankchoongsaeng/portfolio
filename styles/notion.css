@@ -1,0 +1,89 @@
+/**** NOTION STYLES ****/
+
+/* BLOCKS - IMG */
+.notionrtf_image_wrapper {
+  @apply flex flex-col w-full gap-2;
+}
+
+.notionrtf_img {
+  @apply w-full;
+}
+
+.notionrtf_figcaption {
+  @apply text-sm text-gray-400;
+}
+
+/* BLOCKS - QUOTE */
+.notionrtf_quote {
+  @apply font-semibold tracking-tight text-2xl lg:text-3xl relative my-8 text-gray-500 pl-6 border-l-4;
+}
+
+.notionrtf_quote::before {
+  content: "“";
+}
+
+/* BLOCKS - TYPOGRAPHY
+*/
+.notionrtf_title {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-none;
+}
+
+.notionrtf_h1 {
+  @apply text-4xl font-bold mb-4;
+}
+
+.notionrtf_h2 {
+  @apply text-3xl font-bold mb-4;
+}
+
+.notionrtf_h3 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.notionrtf_paragraph {
+  @apply mb-3 text-gray-500  leading-loose font-serif text-lg;
+}
+
+/* ANNOTATION - FONT STYLE
+*/
+.notionrtf_bold {
+  @apply font-semibold;
+}
+
+.notionrtf_italic {
+  @apply italic;
+}
+
+.notionrtf_strikethrough {
+  @apply line-through;
+}
+
+.notionrtf_underline {
+  @apply underline;
+}
+
+.notionrtf_code {
+  @apply font-mono;
+}
+
+/* COLORS 
+*/
+.notionrtf_bg_orange {
+  @apply bg-red-800;
+}
+
+.notionrtf_bg_gray {
+  @apply bg-gray-500;
+}
+
+.notionrtf_bg_yellow {
+  @apply bg-yellow-600;
+}
+
+.notionrtf_bg_green {
+  @apply bg-green-800;
+}
+
+.notionrtf_bg_blue {
+  @apply bg-blue-600;
+}
