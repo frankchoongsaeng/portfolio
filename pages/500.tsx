@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Error500(props) {
   return (
@@ -10,14 +10,15 @@ export default function Error500(props) {
         <SVG />
       </div>
       <h1 className="text-4xl md:text-5xl lg:text-7xl tracking-tighter font-bold text-center">
-        Agent 500 strikes again!
+        Agent <span className="italic">500</span> strikes again!
       </h1>
       <p className="text-xl lg:text-2xl max-w-[35ch] text-center">
         I'm trying to eradicate these bugs so we can get back to a smooth
         experience. In the meantime, let's get you somewhere safe.
       </p>
 
-      <button
+      <Link
+        href="/"
         className={`btn flex items-center px-4 py-2 rounded border-2 lg:text-xl ${
           props.variant === "light"
             ? "border-gray-200  text-gray-100 focus:outline-white"
@@ -45,7 +46,7 @@ export default function Error500(props) {
           </svg>
         </span>
         Let's get out of here!
-      </button>
+      </Link>
     </div>
   );
 }
