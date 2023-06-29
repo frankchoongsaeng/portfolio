@@ -5,7 +5,6 @@ import "nprogress/nprogress.css";
 
 import "../styles/globals.css";
 import "styles/notion.css";
-import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   const [shouldSeeOutdatedAlert, setShouldSeeOutdatedAlert] = useState(false);

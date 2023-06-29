@@ -1,4 +1,3 @@
-import axios, { AxiosPromise } from "axios";
 import N from "lib/notion/core/types";
 
 import { Client } from "@notionhq/client";
