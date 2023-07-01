@@ -4,31 +4,29 @@ import Button from "components/button";
 import { useEffect, useState } from "react";
 
 function NavLinks() {
-  return <>
-    <Link
-      href="/"
-      className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
-      
+  return (
+    <>
+      <Link
+        href="/"
+        className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline"
+      >
         About
-      
-    </Link>
-    <span className="inline-block h-4 border-l-2 border-light"></span>
-    <Link
-      href="/#contact"
-      className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline">
-      
-        Contact Me
-      
-    </Link>
-    <span className="inline-block h-4 border-l-2 border-light"></span>
-    <div className="pr-8">
-      <Link href="/blog">
-
-        <Button>Personal Blog</Button>
-
       </Link>
-    </div>
-  </>;
+      <span className="inline-block h-4 border-l-2 border-light"></span>
+      <Link
+        href="/#contact"
+        className="nav-item inline-block py-4 focus:outline-none focus:underline hover:underline"
+      >
+        Contact Me
+      </Link>
+      <span className="inline-block h-4 border-l-2 border-light"></span>
+      <div className="pr-8">
+        <Link href="/blog">
+          <Button>Personal Blog</Button>
+        </Link>
+      </div>
+    </>
+  );
 }
 
 export default function Nav() {
@@ -53,7 +51,7 @@ export default function Nav() {
     <>
       <div className="sticky top-0 z-50 bg-white shadow-xl">
         {/* expand button */}
-        <div className="fixed right-0 z-0 w-full" style={{ zIndex: -100 }}>
+        <div className="fixed right-0 top-0 z-0 w-full">
           <div
             className={`w-16 h-16 mt-px p-2 ml-auto relative z-10`}
             style={{ transformStyle: "preserve-3d" }}
@@ -99,7 +97,6 @@ export default function Nav() {
             </nav>
           </div>
         </div>
-
         {/* nav bar */}
         <div className="relative z-10 bg-white hidden md:block">
           <Container>

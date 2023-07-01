@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
@@ -44,9 +44,6 @@ function MyApp({ Component, pageProps }) {
 function OutdatedAlert({ onClose }) {
   return (
     <>
-      {/* <Head>
-        <link rel="stylesheet" href="nprogress.css" />
-      </Head> */}
       <div className="bg-red-500 text-black text-center p-2">
         <span>
           Sorry, the information here is{" "}
