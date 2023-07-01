@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import { Analytics } from "@vercel/analytics/react";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
 import "../styles/globals.css";
 import "styles/notion.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   const [shouldSeeOutdatedAlert, setShouldSeeOutdatedAlert] = useState(false);
 
   const closeAlert = () => {
@@ -37,6 +39,7 @@ function MyApp({ Component, pageProps }) {
     <>
       {shouldSeeOutdatedAlert && <OutdatedAlert onClose={closeAlert} />}
       <Component {...pageProps} />
+      <Analytics />
     </>
   );
 }
